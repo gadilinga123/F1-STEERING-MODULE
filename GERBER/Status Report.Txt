@@ -1,0 +1,27 @@
+Output: Gerber X2 Files
+Type  : GerberX2
+From  : Variant [[No Variations]] of Project [F1_MODULE.PrjPcb]
+   Generated File[F1_MODULE_Copper_Signal_Top.gbr]
+   Generated File[F1_MODULE_Copper_Signal_1.gbr]
+   Generated File[F1_MODULE_Copper_Signal_2.gbr]
+   Generated File[F1_MODULE_Copper_Signal_Bot.gbr]
+   Generated File[F1_MODULE_Legend_Top.gbr]
+   Generated File[F1_MODULE_Legend_Bot.gbr]
+   Generated File[F1_MODULE_Soldermask_Top.gbr]
+   Generated File[F1_MODULE_Soldermask_Bot.gbr]
+   Generated File[F1_MODULE_Paste_Top.gbr]
+   Generated File[F1_MODULE_Paste_Bot.gbr]
+   Generated File[F1_MODULE_Board_Shape.gbr]
+   Generated File[F1_MODULE_Mechanical_1.gbr]
+   Generated File[F1_MODULE_NPTH_Drill.gbr]
+   Generated File[F1_MODULE_PTH_Drill.gbr]
+   Generated File[F1_MODULE_Drawing_1.gbr]
+   Generated File[F1_MODULE_Drillmap_1.gbr]
+   Generated File[F1_MODULE.EXTREP]
+   Generated File[F1_MODULE.REP]
+
+
+Files Generated   : 18
+Documents Printed : 0
+
+Finished Output Generation At 11:07:42 AM On 11/23/2025
