@@ -1,4 +1,6 @@
 ## F1-Style Steering Wheel Module
+<img width="983" height="747" alt="image" src="https://github.com/user-attachments/assets/753c32d3-19bb-4fdd-8a2f-ec27a3733ce8" />
+
 
 **Context:**  
 Developed as part of a master’s coursework based on a problem statement provided by the Ferrari engineering team.
