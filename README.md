@@ -1,18 +1,39 @@
-## F1-Style Steering Wheel ECU (Embedded Automotive System)
+# F1 Steering Wheel Control Module (Ferrari Challenge Project)
 
 ## Overview
-Led the end-to-end development of an F1-style steering wheel control module based on requirements defined by the Ferrari engineering team.  
-The system functions as an embedded ECU, handling driver inputs, CAN communication, and real-time display feedback.
+Designed and implemented an embedded ECU for an F1-style steering wheel, developed under requirements defined by the Ferrari engineering team.  
+The system integrates real-time driver inputs, CAN communication, and display feedback.
 
-<img width="976" height="600" alt="image" src="https://github.com/user-attachments/assets/cca16b1a-6531-4923-a927-6840cd9a90fe" />
-
+Complete hardware design files, schematics, and demonstration are included in this repository.
 
 ---
 
-## My Role
-- Led system-level design and development from requirements to validation
-- Owned hardware architecture, schematic design, and PCB development
-- Contributed to system integration, bring-up, and validation
+## Demo
+👉 Full system demonstration (inputs, CAN, display output):  
+[▶ Watch Demo Video](./demo.mp4)
+
+---
+
+## System Architecture
+<img width="976" height="600" alt="image" src="https://github.com/user-attachments/assets/2b802034-9352-4ec3-a90b-34f7360a2b17" />
+
+
+The system is built around a centralized control architecture:
+- **MCU:** STM32F103 (ARM Cortex-M3)
+- **Communication:** CAN (vehicle interface), UART (debug)
+- **Display:** SPI-based TFT LCD
+- **Inputs:** Digital switches + analog signals (clutch, rotary)
+- **Power:** 12V automotive input + USB fallback
+
+---
+
+## My Contributions
+- Led end-to-end system development from requirements to validation
+- Defined system architecture and hardware partitioning
+- Designed complete schematic and 4-layer PCB (Altium Designer)
+- Implemented power architecture (DC-DC + LDO design trade-offs)
+- Performed hardware bring-up, debugging, and validation using lab equipment
+- Resolved critical hardware issue (boot failure due to reset circuit)
 
 ---
 
@@ -22,78 +43,84 @@ The system functions as an embedded ECU, handling driver inputs, CAN communicati
   - Analog inputs (clutch control and rotary selector)
 - CAN bus communication:
   - Reception of vehicle data (e.g., temperature signals)
-  - Control of output indicators (LEDs)
+  - Control of LED outputs
 - Real-time user interface:
-  - TFT display (SPI) for driver feedback
+  - TFT display (320×240) with dynamic feedback
 - Dual power architecture:
-  - 12V automotive input
-  - USB-based supply for controlled debugging and bring-up
-
----
-
-## System Architecture
-- **MCU:** STM32F103 (ARM Cortex-M3)
-- **Communication:** CAN (SN65HVD232 transceiver)
-- **Display:** SPI-based TFT LCD (320×240)
-- **Interfaces:** UART (debug), USB
-- **Power:**
-  - Switching regulator (12V → 3.3V)
-  - LDO with USB power to test without the dependancy of bench power supply
-
-Defined complete system architecture and block diagram, including:
-- Mixed-signal input handling
-- Communication interfaces (CAN, SPI, UART)
-- Power management strategy with protection
+  - 12V automotive supply
+  - USB-based supply for controlled debugging
 
 ---
 
 ## Hardware Design
-- Designed full schematic and 4-layer PCB in Altium Designer
-- Stack-up: Signal / Ground / Power / Signal
-- Controlled impedance routing for CAN and USB signals
-- Integrated:
-  - STM32F103 MCU
-  - Mixed-signal inputs
-  - TFT display interface
-  - PC communication interface
 
-### Power Design
-- Designed 12V automotive power architecture:
-  - High-efficiency DC-DC converter (12V → 3.3V) with <5% output ripple
-  - LDO-based USB supply for safe bring-up and debugging
-- Implemented protection:
+### PCB Design
+- 4-layer stackup: Signal / Ground / Power / Signal
+- Controlled impedance routing for CAN and USB
+- EMI-aware layout and signal integrity optimization
+
+### Power Architecture
+- 12V → 3.3V DC-DC converter (>90% efficiency, <5% ripple)
+- LDO regulator for low-noise operation and USB debugging
+- Protection features:
   - TVS diode (transient suppression)
   - Reverse polarity protection
-  - Input filtering for EMI mitigation
+  - Input filtering (EMI mitigation)
 
 ---
 
-## Validation & Bring-Up
-- Performed full hardware bring-up and debugging
-- Validated system functionality against defined requirements
-- Used lab equipment (oscilloscope, power supply) for:
-  - Power integrity verification
-  - Signal validation
-  - Interface debugging (CAN, display)
-
----
-
-## Key Engineering Decisions
+## Firmware
+- Developed in C using STM32CubeIDE
 - Modular architecture:
-  - Separation of main control board and HMI interface
-  - Enabled parallel development and easier iteration
-- Power trade-offs:
-  - DC-DC for efficiency vs LDO for low-noise operation
-- Thermal design:
-  - Passive cooling only (no fan)
-  - Thermal vias + ground plane heat dissipation
+  - Input acquisition layer
+  - Processing logic
+  - Output control (display + LEDs)
+- CAN communication handling and debugging
+- SPI-based display integration
+
+---
+
+## Validation & Testing
+- Hardware bring-up and debugging
+- Power integrity verification
+- Clock stability validation (external oscillator)
+- Functional testing:
+  - Inputs (buttons, analog)
+  - CAN communication
+  - Display output
+- System-level validation against requirements
+
+---
+
+## Key Technical Metrics
+- Power Conversion Efficiency: >90%
+- Output Ripple: <5%
+- PCB: 4-layer design
+- Supply Inputs: 12V automotive + 5V USB fallback
 
 ---
 
 ## Challenges & Solutions
-- **Manufacturing delays:**
-  - Continued firmware and system testing using STM32 Nucleo + HMI module
+- **Thermal constraints (no active cooling):**
+  - Used efficient DC-DC + thermal vias and ground planes
 
+- **Manufacturing delays:**
+  - Continued development using STM32 Nucleo + HMI module
+
+- **Boot failure issue:**
+  - Root cause: incorrect reset switch footprint
+  - Fix: hardware rework and validation
+
+- **Cost vs automotive protection:**
+  - Replaced surge stopper IC with discrete protection (TVS + diode)
+
+---
+
+## Design Files
+- Schematics: `/SCHEMATICS/`
+- PCB Layout & Altium Files: root directory
+- Gerber Files: `/GERBER/`
+- Datasheets: `/DATASHEETS & AN/`
 
 ---
 
